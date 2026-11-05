@@ -1,7 +1,7 @@
-name: Контент-студия
+name: YarkiLab – автопостинг
 
 # Каждые 30 минут: бот материалов, зеркало TG → Max, публикации по таблицам, расшифровка подкастов.
-# Код – в закрытом движке Контент-студии, здесь только запуск. Настройки и ключи – в секретах репозитория.
+# Код – в закрытом движке YarkiLab, здесь только запуск. Настройки и ключи – в секретах репозитория.
 on:
   schedule:
     - cron: "7,37 * * * *"
@@ -23,7 +23,7 @@ jobs:
       - name: Движок
         uses: actions/checkout@v4
         with:
-          repository: ichrisermak/content-engine
+          repository: ichrisermak/yarkilab-content-engine
           token: ${{ secrets.ENGINE_TOKEN || github.token }}
           path: engine
       - uses: actions/setup-node@v4
@@ -45,7 +45,7 @@ jobs:
       - name: Движок
         uses: actions/checkout@v4
         with:
-          repository: ichrisermak/content-engine
+          repository: ichrisermak/yarkilab-content-engine
           token: ${{ secrets.ENGINE_TOKEN || github.token }}
           path: engine
       - uses: actions/setup-python@v5
