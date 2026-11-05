@@ -1,0 +1,24 @@
+name: Auto Publisher
+
+# Автопостинг по таблицам всех ваших проектов. Код – в общем движке, здесь только запуск.
+# Запуск каждые 5 минут даёт cron-job.org (см. README); расписание GitHub ниже – запасное.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Только один проект (id); пусто – все"
+        required: false
+        default: ""
+
+concurrency:
+  group: publisher
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    uses: ichrisermak/content-engine/.github/workflows/engine-publish.yml@main
+    with:
+      project: ${{ inputs.project || '' }}
+    secrets: inherit
