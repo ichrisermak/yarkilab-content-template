@@ -1,4 +1,4 @@
-name: Подключить аккаунт
+name: YarkiLab – подключить аккаунт
 
 # Threads или Instagram: Actions → «Подключить аккаунт» → Run workflow.
 on:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: ichrisermak/content-engine
+          repository: ichrisermak/yarkilab-content-engine
           token: ${{ secrets.ENGINE_TOKEN || github.token }}
           path: engine
       - uses: actions/setup-node@v4
