@@ -1,0 +1,34 @@
+name: Connect account
+
+# Подключение Threads или Instagram. Actions → Connect account → Run workflow:
+# проект (id), площадка, аккаунт (ключ из ACCOUNTS проекта), адрес после «Разрешить».
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Проект (id из PROJECTS)"
+        required: true
+        type: string
+      platform:
+        description: "Площадка"
+        required: true
+        type: choice
+        options: [threads, instagram]
+      account:
+        description: "Аккаунт (ключ из ACCOUNTS, например prosto)"
+        required: true
+        type: string
+      code:
+        description: "Адресная строка после «Разрешить» (или код после code=)"
+        required: true
+        type: string
+
+jobs:
+  connect:
+    uses: ichrisermak/content-engine/.github/workflows/engine-connect.yml@main
+    with:
+      project: ${{ inputs.project }}
+      platform: ${{ inputs.platform }}
+      account: ${{ inputs.account }}
+      code: ${{ inputs.code }}
+    secrets: inherit
